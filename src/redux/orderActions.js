@@ -28,7 +28,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await Axios.post("/api/orders", order, {
+    const { data } = await Axios.post("https://ecomb.herokuapp.com/api/orders", order, {
       headers: {
         authorization: `Bearer ${userInfo.token}`,
       },
@@ -53,7 +53,7 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await Axios.get(`/api/orders/${orderId}`, {
+    const { data } = await Axios.get(`https://ecomb.herokuapp.com/api/orders/${orderId}`, {
       headers: {
         authorization: `Bearer ${userInfo.token}`,
       },
@@ -76,7 +76,7 @@ export const listOrderMine = () => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await Axios.get(`/api/orders/mine`, {
+    const { data } = await Axios.get(`https://ecomb.herokuapp.com/api/orders/mine`, {
       headers: {
         authorization: `Bearer ${userInfo.token}`,
       },
@@ -99,7 +99,7 @@ export const listOrders = ({ seller = '' }) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.get(`/api/orders?seller=${seller}`, {
+    const { data } = await Axios.get(`https://ecomb.herokuapp.com/api/orders?seller=${seller}`, {
       headers: { authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
@@ -117,7 +117,7 @@ export const deleteOrder = (orderId) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = Axios.delete(`/api/orders/${orderId}`, {
+    const { data } = Axios.delete(`https://ecomb.herokuapp.com/api/orders/${orderId}`, {
       headers: { authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({ type: ORDER_DELETE_SUCCESS, payload: data });
@@ -136,7 +136,7 @@ export const deliverOrder = (orderId) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = Axios.put(
-      `/api/orders/${orderId}/deliver`,
+      `https://ecomb.herokuapp.com/api/orders/${orderId}/deliver`,
       {},
       {
         headers: { authorization: `Bearer ${userInfo.token}` },

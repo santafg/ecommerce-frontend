@@ -6,7 +6,7 @@ const Product = ({ product }) => {
     <>
       <div className="card-main">
         <Link to={`/product/${product._id}`}>
-          <img className="medium" src={product.image} alt="product" />
+          <img className="medium" src={`https://ecomb.herokuapp.com${product.image}`} alt="product" />
         </Link>
         <div className="card-body">
           <Link to={`product/${product._id}`}>

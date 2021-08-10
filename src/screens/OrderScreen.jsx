@@ -25,7 +25,7 @@ const OrderScreen = () => {
   const { id } = useParams();
   useEffect(() => {
     const addPayPalScript = async () => {
-      const { data } = await Axios.get("/api/config/paypal");
+      const { data } = await Axios.get("https://ecomb.herokuapp.com/api/config/paypal");
       const script = document.createElement("script");
       script.type = "text/javascript";
       script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
@@ -114,7 +114,7 @@ const OrderScreen = () => {
                         <div className="row">
                           <div>
                             <img
-                              src={item.image}
+                              src={`https://ecomb.herokuapp.com${item.image}`}
                               alt={item.name}
                               className="small"
                             />

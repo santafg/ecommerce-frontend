@@ -43,6 +43,7 @@ export const listProducts =
       const { data } = await Axios.get(
         `https://ecomb.herokuapp.com/api/products?pageNumber=${pageNumber}&seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`
       );
+      console.log(data);
       dispatch({
         type: PRODUCT_LIST_SUCCESS,
         payload: data,
@@ -70,7 +71,6 @@ export const listProductCategories = () => async (dispatch) => {
 export const detailsProduct = (productId) => async (dispatch) => {
   dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
   try {
-    const res = await Axios.get(`https://ecomb.herokuapp.com/api/products/${productId}`);
     const { data } = await Axios.get(`https://ecomb.herokuapp.com/api/products/${productId}`);
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {

@@ -63,7 +63,7 @@ const ProductEditScreen = () => {
     bodyFormData.append('image', file);
     setLoadingUpload(true);
     try {
-      const { data } = await axios.post('/api/uploads', bodyFormData, {
+      const { data } = await axios.post('https://ecomb.herokuapp.com/api/uploads', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           authorization: `Bearer ${userInfo.token}`,

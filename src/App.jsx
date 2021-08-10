@@ -63,7 +63,7 @@ const App = () => {
                 <i className="fa fa-bars"></i>
               </button>
               <Link className="brand" to="/">
-                Ecommerce
+                Secommerce
               </Link>
             </div>
             <div>

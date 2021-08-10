@@ -100,7 +100,7 @@ const App = () => {
                       <Link
                         className="white"
                         onClick={signoutHandler}
-                        to="#signout"
+                        // to="#signout"
                       >
                         Sign Out
                       </Link>

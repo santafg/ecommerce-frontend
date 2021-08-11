@@ -26,6 +26,9 @@ import {
   USER_TOPSELLERS_LIST_REQUEST,
   USER_TOPSELLERS_LIST_SUCCESS,
   USER_TOPSELLERS_LIST_FAIL,
+  SELLER_DETAILS_REQUEST,
+  SELLER_DETAILS_SUCCESS,
+  SELLER_DETAILS_FAIL,
 } from "./userConstants";
 
 export const signin = (email, password) => async (dispatch) => {
@@ -96,6 +99,21 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
     });
   }
 };
+
+export const sellerDetails = (sellerId) => async (dispatch) => {
+  dispatch({type : SELLER_DETAILS_REQUEST});
+  try {
+    const { data } = await Axios.get(`https://ecomb.herokuapp.com/api/users/${sellerId}`) 
+    dispatch({type : SELLER_DETAILS_SUCCESS , payload : data})
+  } catch (error) {
+    dispatch({
+      type : SELLER_DETAILS_FAIL ,
+      payload : error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message,
+    })
+  }
+}
 
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   dispatch({ type: USER_UPDATE_PROFILE_REQUEST, payload: user });

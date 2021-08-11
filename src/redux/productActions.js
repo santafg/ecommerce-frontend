@@ -43,7 +43,6 @@ export const listProducts =
       const { data } = await Axios.get(
         `https://ecomb.herokuapp.com/api/products?pageNumber=${pageNumber}&seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`
       );
-      console.log(data);
       dispatch({
         type: PRODUCT_LIST_SUCCESS,
         payload: data,

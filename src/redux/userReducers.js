@@ -1,4 +1,8 @@
 import {
+  SELLER_DETAILS_FAIL,
+  SELLER_DETAILS_REQUEST,
+  SELLER_DETAILS_RESET,
+  SELLER_DETAILS_SUCCESS,
   USER_DELETE_FAIL,
   USER_DELETE_REQUEST,
   USER_DELETE_RESET,
@@ -91,6 +95,30 @@ export const userDetailsReducer = (state = { loading: true }, action) => {
       };
     case USER_DETAILS_RESET:
       return { loading: true };
+
+    default:
+      return state;
+  }
+};
+
+export const sellerDetailsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SELLER_DETAILS_REQUEST:
+      return {
+        loading: true,
+      };
+    case SELLER_DETAILS_SUCCESS:
+      return {
+        loading: false,
+        seller: action.payload,
+      };
+    case SELLER_DETAILS_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case SELLER_DETAILS_RESET:
+      return {};
 
     default:
       return state;

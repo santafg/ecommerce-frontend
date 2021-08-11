@@ -2,17 +2,18 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { listProducts } from "../redux/productActions";
-import { detailsUser } from "../redux/userActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Product from "../components/Product";
 import Rating from "../components/Rating";
+import { sellerDetails } from "../redux/userActions";
+import { SELLER_DETAILS_RESET } from "../redux/userConstants";
 
 export default function SellerScreen() {
   const { id } = useParams();
-  const userDetails = useSelector((state) => state.userDetails);
-  const { loading, error, user } = userDetails;
 
+  const detailsOfSeller = useSelector(state => state.detailsOfSeller);
+  const {loading , seller , error} = detailsOfSeller ;
   const productList = useSelector((state) => state.productList);
   const {
     loading: loadingProducts,
@@ -20,9 +21,11 @@ export default function SellerScreen() {
     products,
   } = productList;
 
+  
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(detailsUser(id));
+    dispatch({type: SELLER_DETAILS_RESET});
+    dispatch(sellerDetails(id));
     dispatch(listProducts({ seller: id }));
   }, [dispatch, id]);
   return (
@@ -31,7 +34,7 @@ export default function SellerScreen() {
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (
-          <MessageBox variant="danger">{error}</MessageBox>
+          <MessageBox variant="danger">Seller not found</MessageBox>
         ) : (
           <ul className="card card-body">
             <li>
@@ -39,25 +42,25 @@ export default function SellerScreen() {
                 <div className="p-1">
                   <img
                     className="small"
-                    src={user.seller.logo}
-                    alt={user.seller.name}
+                    src={seller.seller.logo}
+                    alt={seller.seller.name}
                   ></img>
                 </div>
                 <div className="p-1">
-                  <h1>{user.seller.name}</h1>
+                  <h1>{seller.seller.name}</h1>
                 </div>
               </div>
             </li>
             <li>
               <Rating
-                rating={user.seller.rating}
-                numReviews={user.seller.numReviews}
+                rating={seller.seller.rating}
+                numReviews={seller.seller.numReviews}
               ></Rating>
             </li>
             <li>
-              <a href={`mailto:${user.email}`}>Contact Seller</a>
+              <a href={`mailto:${seller.email}`}>Contact Seller</a>
             </li>
-            <li>{user.seller.description}</li>
+            <li>{seller.seller.description}</li>
           </ul>
         )}
       </div>

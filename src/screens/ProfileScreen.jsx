@@ -27,8 +27,8 @@ const ProfileScreen = () => {
     error: errorUpdate,
   } = userUpdateProfile;
   useEffect(() => {
+    dispatch({ type: USER_UPDATE_PROFILE_REST });
     if (!user) {
-      dispatch({ type: USER_UPDATE_PROFILE_REST });
       dispatch(detailsUser(userInfo._id));
     } else {
       setname(user.name);

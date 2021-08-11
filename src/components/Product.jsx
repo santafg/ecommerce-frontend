@@ -6,7 +6,15 @@ const Product = ({ product }) => {
     <>
       <div className="card-main">
         <Link to={`/product/${product._id}`}>
-          <img className="medium" src={`https://ecomb.herokuapp.com${product.image}`} alt="product" />
+          <img
+            className="medium"
+            src={
+              product.image.indexOf("/uploads") >= 0
+                ? `https://ecomb.herokuapp.com${product.image}`
+                : product.image
+            }
+            alt="product"
+          />
         </Link>
         <div className="card-body">
           <Link to={`product/${product._id}`}>
@@ -16,11 +24,12 @@ const Product = ({ product }) => {
           <div className="row">
             <div className="price">${product.price}</div>
             <div>
-              {product.seller.name || product.seller && (
-                <Link to={`/seller/${product.seller._id}`}>
-                  {product.seller.seller.name}
-                </Link>
-              )}
+              {product.seller.name ||
+                (product.seller && (
+                  <Link to={`/seller/${product.seller._id}`}>
+                    {product.seller.seller.name}
+                  </Link>
+                ))}
             </div>
           </div>
         </div>

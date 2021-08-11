@@ -24,7 +24,7 @@ const OrderHistoryScreen = () => {
         ) : error ? (
           <MessageBox></MessageBox>
         ) : (
-          <table className="table">
+          <table className="table2">
             <thead>
               <tr>
                 <th>ID</th>
@@ -50,6 +50,7 @@ const OrderHistoryScreen = () => {
                   <td>
                     <button
                       type="button"
+                      // className="block"
                       onClick={() => history.push(`/order/${order._id}`)}
                     >
                       Details

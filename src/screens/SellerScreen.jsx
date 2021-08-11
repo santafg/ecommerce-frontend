@@ -35,7 +35,7 @@ export default function SellerScreen() {
           <LoadingBox></LoadingBox>
         ) : error ? (
           <MessageBox variant="danger">Seller not found</MessageBox>
-        ) : (
+        ) : ( seller &&
           <ul className="card card-body">
             <li>
               <div className="row start">

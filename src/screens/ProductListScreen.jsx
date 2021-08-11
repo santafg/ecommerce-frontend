@@ -104,7 +104,8 @@ const ProductListScreen = (props) => {
                     <td>
                       <button
                         type="button"
-                        className="small"
+                        className="block"
+                        style={{margin : ".1rem 0"}}
                         onClick={() =>
                           history.push(`/product/${product._id}/edit`)
                         }
@@ -113,7 +114,8 @@ const ProductListScreen = (props) => {
                       </button>
                       <button
                         type="button"
-                        className="small"
+                        className="block"
+                        style={{margin : ".1rem 0"}}
                         onClick={() => deleteHandler(product)}
                       >
                         Delete

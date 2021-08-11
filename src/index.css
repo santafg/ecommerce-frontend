@@ -95,6 +95,7 @@ footer {
   color: white;
 }
 
+
 /* common */
 
 h1 {
@@ -368,20 +369,69 @@ img.large {
   width: 100%;
   border-collapse: collapse;
 }
+.table2 {
+  width: 100%;
+  border-collapse: collapse;
+}
 
 .table tbody tr:nth-of-type(odd) {
+  background-color: #f4f4f4;
+}
+.table2 tbody tr:nth-of-type(odd) {
   background-color: #f4f4f4;
 }
 
 .table td,
 .table th {
-  text-align: left;
+  text-align: center;
+  padding: 0.5rem;
+  border: 0.1rem solid #e4e4e4;
+}
+.table2 td,
+.table2 th {
+  text-align: center;
   padding: 0.5rem;
   border: 0.1rem solid #e4e4e4;
 }
 
 .table button {
   margin: 0 0.2rem;
+}
+
+/* Responsive Table */
+@media (max-width : 767px){
+  
+  .table2 thead {
+    display: none;
+  }
+  .table2 , .table2 tbody , .table2 tr , .table2 td {
+    display: block;
+    width: 100%;
+  }
+  .table2 tr {
+    margin-bottom: 1.5rem;
+    
+  }
+  .table2 td {
+    text-align: right;
+    position: relative;
+    /* padding-left: 50%; */
+
+  }
+  .table2 td::before{
+    /* content: attr(data-label); */
+    position: absolute;
+    left: .25rem;
+    top: .5rem;
+    font-weight: bold;
+    display: block;
+  }
+  .table2 td:nth-of-type(1):before { content: "ID"; }
+	.table2 td:nth-of-type(2):before { content: "DATE"; }
+	.table2 td:nth-of-type(3):before { content: "TOTAL"; }
+	.table2 td:nth-of-type(4):before { content: "PAID"; }
+	.table2 td:nth-of-type(5):before { content: "DELIVERED"; }
+	.table2 td:nth-of-type(6):before { content: "ACTIONS"; }
 }
 
 /* z index allot */

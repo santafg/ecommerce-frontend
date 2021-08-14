@@ -114,7 +114,11 @@ const OrderScreen = () => {
                         <div className="row">
                           <div>
                             <img
-                              src={`https://ecomb.herokuapp.com${item.image}`}
+                              src={
+                                item.image.indexOf("/res.cloudinary.com") >= 0
+                                  ? item.image
+                                  : `https://ecomb.herokuapp.com${item.image}`
+                              }
                               alt={item.name}
                               className="small"
                             />

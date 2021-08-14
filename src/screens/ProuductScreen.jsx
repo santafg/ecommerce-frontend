@@ -43,9 +43,7 @@ const ProuductScreen = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (comment && rating) {
-      dispatch(
-        createReview(id, { rating, comment, name: userInfo.name })
-      );
+      dispatch(createReview(id, { rating, comment, name: userInfo.name }));
     } else {
       alert("Please enter comment and rating");
     }
@@ -62,7 +60,15 @@ const ProuductScreen = () => {
           <Link to="/">Back to results</Link>
           <div className="row top">
             <div className="col-2">
-              <img className="large" src={`https://ecomb.herokuapp.com${product.image}`} alt={product.name} />
+              <img
+                className="large"
+                src={
+                  product.image.indexOf("/res.cloudinary.com") >= 0
+                    ? product.image
+                    : `https://ecomb.herokuapp.com${product.image}`
+                }
+                alt={product.name}
+              />
             </div>
             <div className="col-1">
               <ul>
@@ -160,8 +166,8 @@ const ProuductScreen = () => {
               {product.reviews.map((review) => (
                 <li key={review._id}>
                   <strong>{review.name}</strong>
-                  <br/>
-                  <br/>
+                  <br />
+                  <br />
                   <Rating rating={review.rating} caption=" "></Rating>
                   <p>{review.createdAt.substring(0, 10)}</p>
                   <p>{review.comment}</p>

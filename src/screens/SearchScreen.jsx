@@ -64,7 +64,11 @@ const SearchScreen = () => {
             <MessageBox variant="danger">{error}</MessageBox>
           ) : (
             <>
-              {totalProducts !== 0 ? <div>Total {totalProducts} Products found</div> : ""}
+              {totalProducts !== 0 && totalProducts !== 1 ? (
+                <div>Total {totalProducts} Products found</div>
+              ) : totalProducts === 1 ? (<div>Total {totalProducts} Product found</div>) : (
+                ""
+              )}
             </>
           )}
           <div>
@@ -84,34 +88,7 @@ const SearchScreen = () => {
         </div>
         <div className="row top">
           <div className="col-1">
-            <h3>Department</h3>
-
-            {loadingCategories ? (
-              <LoadingBox></LoadingBox>
-            ) : errorCategories ? (
-              <MessageBox variant="danger">{errorCategories}</MessageBox>
-            ) : (
-              <ul>
-                <li>
-                  <Link
-                    className={"all" === category ? "active" : ""}
-                    to={getFilterUrl({ category: "all" })}
-                  >
-                    Any
-                  </Link>
-                </li>
-                {categories.map((c) => (
-                  <li key={c}>
-                    <Link
-                      className={c === category ? "active" : ""}
-                      to={getFilterUrl({ category: c })}
-                    >
-                      {c}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
+            
             <div>
               <h3>Price</h3>
               <ul>
@@ -144,6 +121,34 @@ const SearchScreen = () => {
                 ))}
               </ul>
             </div>
+            <h3>Department</h3>
+
+            {loadingCategories ? (
+              <LoadingBox></LoadingBox>
+            ) : errorCategories ? (
+              <MessageBox variant="danger">{errorCategories}</MessageBox>
+            ) : (
+              <ul>
+                <li>
+                  <Link
+                    className={"all" === category ? "active" : ""}
+                    to={getFilterUrl({ category: "all" })}
+                  >
+                    Any
+                  </Link>
+                </li>
+                {categories.map((c) => (
+                  <li key={c}>
+                    <Link
+                      className={c === category ? "active" : ""}
+                      to={getFilterUrl({ category: c })}
+                    >
+                      {c}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
           <div className="col-3">
             {loading ? (
@@ -153,7 +158,10 @@ const SearchScreen = () => {
             ) : (
               <>
                 {products.length === 0 && (
-                  <MessageBox>No Product Found</MessageBox>
+                  <MessageBox>
+                    No Product Found{" "}
+                    {name !== "all" ? `by name '${name}' in the department of '${category}' ` : "here"}
+                  </MessageBox>
                 )}
                 <div className="row center">
                   {products.map((product) => (

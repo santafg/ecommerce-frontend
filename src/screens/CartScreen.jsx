@@ -41,7 +41,11 @@ const CartScreen = () => {
                 <li key={item.product}>
                   <div className="row">
                     <div>
-                      <img src={item.image} alt={item.name} className="small" />
+                      <img src={
+              item.image.indexOf("/res.cloudinary.com") >= 0
+                ? item.image
+                : `https://ecomb.herokuapp.com${item.image}`
+            } alt={item.name} className="small" />
                     </div>
 
                     <div className="min-30">

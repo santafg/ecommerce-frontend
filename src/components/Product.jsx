@@ -9,9 +9,9 @@ const Product = ({ product }) => {
           <img
             className="medium"
             src={
-              product.image.indexOf("/uploads") >= 0
-                ? `https://ecomb.herokuapp.com${product.image}`
-                : product.image
+              product.image.indexOf("/res.cloudinary.com") >= 0
+                ? product.image
+                : `https://ecomb.herokuapp.com${product.image}`
             }
             alt="product"
           />
